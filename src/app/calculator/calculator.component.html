@@ -1,0 +1,49 @@
+
+<div class="container">
+  <h1>Calculadora</h1>
+  <div class="separator"></div>
+  <div>
+    <div class="row">
+      <div class="col-md-3">Editar valores de comisiones</div>
+      <div class="col-md-2">
+        <button [hidden]="editingFees" (click)="toggleEditFees()">Editar</button>
+        <button [hidden]="!editingFees" (click)="toggleEditFees()">Aceptar</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-2">IVA</div>
+      <div class="col-md-2">Comisión Clip</div>
+      <div class="col-md-2">{{values[1].name}}</div>
+      <div class="col-md-2">{{values[2].name}}</div>
+      <div class="col-md-2">{{values[3].name}}</div>
+      <div class="col-md-2">{{values[4].name}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"><input type="text" [(ngModel)]="iva" [disabled]="!editingFees"> %</div>
+      <div class="col-md-2"><input type="text" [(ngModel)]="clip" [disabled]="!editingFees"> %</div>
+      <div class="col-md-2"><input type="text" [(ngModel)]="values[1].fee" [disabled]="!editingFees">%</div>
+      <div class="col-md-2"><input type="text" [(ngModel)]="values[2].fee" [disabled]="!editingFees">%</div>
+      <div class="col-md-2"><input type="text" [(ngModel)]="values[3].fee" [disabled]="!editingFees">%</div>
+      <div class="col-md-2"><input type="text" [(ngModel)]="values[4].fee" [disabled]="!editingFees">%</div>
+    </div>
+    <div class="separator"></div>
+    <div class="row">
+      <div class="col-md-1">Cantidad</div>
+      <div class="col-md-2"><input type="text" [(ngModel)]="amount" (keyup)="amountKeyUp($event)" (change)="calculate()" [disabled]="editingFees"></div>
+    </div>
+    <div class="separator"></div>
+    <div *ngIf="calculated" class="table">
+      <div class="row">
+        <div class="offset-md-1 col-md-3 bold">Tipo de Pago</div>
+        <div class="col-md-3 bold">Total</div>
+        <div class="col-md-3 bold">Mensualidad</div>
+      </div>
+      <div class="row evenOdd" *ngFor="let value of values">
+        <div class="offset-md-1 col-md-3 bold">{{value.name}}</div>
+        <div class="col-md-3">{{value.total}}</div>
+        <div class="col-md-3">{{value.monthly}}</div>
+      </div>
+    </div>
+  </div>
+</div>
