@@ -1,6 +1,9 @@
 
 <div class="container">
-  <h1>Calculadora</h1>
+  <div class="text-center">
+    <img src="https://papelerialeo.com/images/logos/logo_full300.png" alt="logo papeleria e internet leo">
+  </div>
+  <h1>Calculadora de comisión Clip</h1>
   <div class="separator"></div>
   <div>
     <div class="row">
@@ -28,21 +31,25 @@
       <div class="col-md-2"><input type="text" [(ngModel)]="values[4].fee" [disabled]="!editingFees">%</div>
     </div>
     <div class="separator"></div>
+    <div>Ingresa la cantidad y presiona "Enter" para calcular</div>
+    <br>
     <div class="row">
       <div class="col-md-1">Cantidad</div>
       <div class="col-md-2"><input type="text" [(ngModel)]="amount" (keyup)="amountKeyUp($event)" (change)="calculate()" [disabled]="editingFees"></div>
     </div>
     <div class="separator"></div>
-    <div *ngIf="calculated" class="table">
-      <div class="row">
-        <div class="offset-md-1 col-md-3 bold">Tipo de Pago</div>
-        <div class="col-md-3 bold">Total</div>
-        <div class="col-md-3 bold">Mensualidad</div>
-      </div>
-      <div class="row evenOdd" *ngFor="let value of values">
-        <div class="offset-md-1 col-md-3 bold">{{value.name}}</div>
-        <div class="col-md-3">{{value.total}}</div>
-        <div class="col-md-3">{{value.monthly}}</div>
+    <div class="table-container">
+      <div *ngIf="calculated" class="table">
+        <div class="row">
+          <div class="offset-md-1 col-md-3 bold">Tipo de Pago</div>
+          <div class="col-md-3 bold">Total</div>
+          <div class="col-md-3 bold">Mensualidad (Aprox)</div>
+        </div>
+        <div class="row evenOdd" *ngFor="let value of values">
+          <div class="offset-md-1 col-md-3 bold">{{value.name}}</div>
+          <div class="col-md-3">{{value.total}}</div>
+          <div class="col-md-3">{{value.monthly}}</div>
+        </div>
       </div>
     </div>
   </div>

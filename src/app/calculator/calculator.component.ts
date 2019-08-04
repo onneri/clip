@@ -35,23 +35,23 @@ export class CalculatorComponent implements OnInit {
     let amount2;
     values.forEach(function (item, index) {
       if(amount < 500 && index > 0){
-        item.total = 'N/A';
-        item.monthly = 'N/A';
+        item.total = 0;
+        item.monthly = 0;
         return;
       }
       divisor = 1 - clip / 100 - clip / 100 * iva / 100 - item.fee / 100 - item.fee / 100 * iva / 100;
       multiplier = 1 / divisor;
       const product = amount * multiplier;
       const division = amount / divisor;
-      if(product >= division)
-        item.total = (Math.round(product * 2) / 2).toFixed(1);
-      else{
-        item.total = (Math.round(division * 2) / 2).toFixed(1);
+      if(product >= division) {
+        item.total = Math.round(product * 100) / 100;
+      }else{
+        item.total = Math.round(division * 100) / 100;
       }
       if(index == 0 ){
-        item.monthly = 'N/A';
+        item.monthly = 0;
       }else {
-        item.monthly = (Math.round(item.total / item.months * 100) / 100).toFixed(1);
+        item.monthly = parseInt((Math.round(item.total / item.months * 100) / 100).toFixed(1));
       }
     });
     this.calculated = true;
